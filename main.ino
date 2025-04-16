@@ -216,6 +216,8 @@ bool walkTheMaze(){
 void rotate(int degrees, bool clockwise, int i){
     int ms = clockwise ? CW : CCW;
     switch(degrees){
+        case 0:
+            return;
         case 90:
             servos[i].write(ms);
             delay(300);
@@ -263,7 +265,8 @@ void mazeMusic(){
 }
 
 void loop(){
-    //mazeMusic();
+    delay(1000*5);
+    mazeMusic();
     do{ //function names speak for them selfes, nothing to explain
         initMaze();
         initGates();
@@ -278,5 +281,4 @@ void loop(){
     delay(1000*10);
     for(int i = 0; i < 8; i++) // reverse rotation
         rotate(gates[i].rot * 90, false, i);
-    delay(1000*10);
 }
